@@ -5,20 +5,28 @@ from networksecurity.constant  import training_pipeline
 print(training_pipeline.PIPELINE_NAME)
 
 class TrainingPipelineConfig:
-    def __init__(self,timestamp=datetime.now()):
-        timestamp = timestamp.strftime("%m%d%Y__%H%M%S")
-        self.pipeline_name = training_pipeline.PIPELINE_NAME
-        self.artifact_name=training_pipeline.ARTIFACTS_DIR
-        self.artifact_dir=os.join(self.artifact_name,timestamp)
-        self.timestamp:str=timestamp
+    def __init__(self):
+        self.artifact_name = "artifact"
+        timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+        # place artifacts under the project's ARTIFACTS_DIR with a timestamped subfolder
+        self.artifact_dir = os.path.join(training_pipeline.ARTIFACTS_DIR,
+                                         self.artifact_name,
+                                         timestamp)
 
-
+"""class TrainingPipelineConfig:
+    def __init__(self):
+        self.artifact_name = "artifact"
+        timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+-        self.artifact_dir = os.join(self.artifact_name, timestamp)
++        self.artifact_dir = os.path.join(self.artifact_name, timestamp)
+# ...existing code..."""
 
 class DataIngestionConfig:
-    def __int__(self,training_pipeline_config:TrainingPipelineConfig):
-        self.data_ingestion_dir:str=os.path.join(
+    def __init__(self, training_pipeline_config: TrainingPipelineConfig):
+        # directory for data ingestion inside the artifact folder
+        self.data_ingestion_dir: str = os.path.join(
             training_pipeline_config.artifact_dir,
-            training_pipeline_config.artifact_dir,training_pipeline.DATA_INGESTION_DIR_NAME 
+            training_pipeline.DATA_INGESTION_DIR_NAME
         )
         self.feature_store_file_path:str=os.path.join(
             self.data_ingestion_dir,

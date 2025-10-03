@@ -1,6 +1,0 @@
-2025-10-03 12:54:59,822 - networksecurity - ERROR - error occurred in python script name [D:\NetworkSecurity\push_data.py] at line number [27] error message ['str' object has no attribute 'values']
-Traceback (most recent call last):
-  File "D:\NetworkSecurity\push_data.py", line 27, in csv_to_json_converter
-    records=list(json.loads(data.T.to_json().values()))
-                            ^^^^^^^^^^^^^^^^^^^^^^^
-AttributeError: 'str' object has no attribute 'values'
