@@ -6,4 +6,5 @@ matplotlib
 seaborn
 pymongo
 Certifi
+pymongo[srv]
 -e.
