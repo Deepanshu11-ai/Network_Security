@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: NetworkSecurityProject
+Version: 0.1.0
+Author: Deepanshu Sharama
+Author-email: 44deepanshu@gmail.com
+Requires-Dist: python-dotenv
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: scikit-learn
+Requires-Dist: matplotlib
+Requires-Dist: seaborn
+Requires-Dist: pymongo
+Requires-Dist: Certifi
+Dynamic: author
+Dynamic: author-email
+Dynamic: requires-dist
