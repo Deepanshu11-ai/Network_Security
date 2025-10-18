@@ -21,7 +21,7 @@ from sklearn.model_selection import train_test_split
 
 from networksecurity.exception.exception import NetworkSecurityException
 
-from networksecurity.logging.logger import logging
+from networksecurity.logging.logger import logger
 
 from networksecurity.entity.config_entity import DataIngestionConfig
 
@@ -58,19 +58,30 @@ class DataIngestion:
             cursor = self.mongo_client[self.database_name][self.collection_name].find()
             records = list(cursor)
             if not records:
-                logging.info("No records found in collection %s.%s", self.database_name, self.collection_name)
+                logger.info("No records found in collection %s.%s", self.database_name, self.collection_name)
                 return df
 
             df = pd.DataFrame(records)
-            
-            if "_id" in df.columns:
 
+            if "_id" in df.columns:
                 df.drop(columns=["_id"], inplace=True)
 
             return df
 
         except Exception as e:
+            # Log the MongoDB error and attempt to fallback to a local CSV file if available.
+            logger.error("Failed to export collection from MongoDB: %s", str(e))
 
+            local_csv = os.path.join(os.getcwd(), "Network_Data", "phisingData.csv")
+            if os.path.exists(local_csv):
+                try:
+                    logger.info("Falling back to local CSV at %s", local_csv)
+                    df = pd.read_csv(local_csv)
+                    return df
+                except Exception as read_e:
+                    logger.error("Failed to read fallback CSV: %s", str(read_e))
+
+            # If fallback not available or failed, re-raise as project exception.
             raise NetworkSecurityException(e, sys)
 
     def export_data_into_feature_store(self, df: pd.DataFrame) -> pd.DataFrame:

@@ -1,0 +1,407 @@
+2025-10-18 08:20:02,027 - networksecurity - ERROR - error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_ingestion.py] at line number [59] error message [SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 68f3003777df8e217454b223, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-atny5bi-shard-00-00.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-01.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-02.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>]
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\networksecurity\components\data_ingestion.py", line 59, in export_collection_as_dataframe
+    records = list(cursor)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\cursor.py", line 1289, in __next__
+    return self.next()
+           ~~~~~~~~~^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\cursor.py", line 1265, in next
+    if len(self._data) or self._refresh():
+                          ~~~~~~~~~~~~~^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\cursor.py", line 1213, in _refresh
+    self._send_message(q)
+    ~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\cursor.py", line 1108, in _send_message
+    response = client._run_operation(
+        operation, self._unpack_response, address=self._address
+    )
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 1938, in _run_operation
+    return self._retryable_read(
+           ~~~~~~~~~~~~~~~~~~~~^
+        _cmd,
+        ^^^^^
+    ...<4 lines>...
+        operation=operation.name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 2047, in _retryable_read
+    return self._retry_internal(
+           ~~~~~~~~~~~~~~~~~~~~^
+        func,
+        ^^^^^
+    ...<7 lines>...
+        operation_id=operation_id,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 2014, in _retry_internal
+    ).run()
+      ~~~^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 2765, in run
+    return self._read() if self._is_read else self._write()
+           ~~~~~~~~~~^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 2910, in _read
+    self._server = self._get_server()
+                   ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 2858, in _get_server
+    return self._client._select_server(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self._server_selector,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        operation_id=self._operation_id,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 1833, in _select_server
+    server = topology.select_server(
+        server_selector,
+    ...<2 lines>...
+        operation_id=operation_id,
+    )
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\topology.py", line 409, in select_server
+    server = self._select_server(
+        selector,
+    ...<4 lines>...
+        operation_id=operation_id,
+    )
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\topology.py", line 387, in _select_server
+    servers = self.select_servers(
+        selector, operation, server_selection_timeout, address, operation_id
+    )
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\topology.py", line 294, in select_servers
+    server_descriptions = self._select_servers_loop(
+        selector, server_timeout, operation, operation_id, address
+    )
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\topology.py", line 344, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+        f"{self._error_message(selector)}, Timeout: {timeout}s, Topology Description: {self.description!r}"
+    )
+pymongo.errors.ServerSelectionTimeoutError: SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 68f3003777df8e217454b223, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-atny5bi-shard-00-00.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-01.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-02.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2025-10-18 08:20:02,032 - networksecurity - ERROR - error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_ingestion.py] at line number [120] error message [error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_ingestion.py] at line number [59] error message [SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 68f3003777df8e217454b223, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-atny5bi-shard-00-00.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-01.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-02.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>]]
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\networksecurity\components\data_ingestion.py", line 59, in export_collection_as_dataframe
+    records = list(cursor)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\cursor.py", line 1289, in __next__
+    return self.next()
+           ~~~~~~~~~^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\cursor.py", line 1265, in next
+    if len(self._data) or self._refresh():
+                          ~~~~~~~~~~~~~^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\cursor.py", line 1213, in _refresh
+    self._send_message(q)
+    ~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\cursor.py", line 1108, in _send_message
+    response = client._run_operation(
+        operation, self._unpack_response, address=self._address
+    )
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 1938, in _run_operation
+    return self._retryable_read(
+           ~~~~~~~~~~~~~~~~~~~~^
+        _cmd,
+        ^^^^^
+    ...<4 lines>...
+        operation=operation.name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 2047, in _retryable_read
+    return self._retry_internal(
+           ~~~~~~~~~~~~~~~~~~~~^
+        func,
+        ^^^^^
+    ...<7 lines>...
+        operation_id=operation_id,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 2014, in _retry_internal
+    ).run()
+      ~~~^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 2765, in run
+    return self._read() if self._is_read else self._write()
+           ~~~~~~~~~~^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 2910, in _read
+    self._server = self._get_server()
+                   ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 2858, in _get_server
+    return self._client._select_server(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self._server_selector,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        operation_id=self._operation_id,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 1833, in _select_server
+    server = topology.select_server(
+        server_selector,
+    ...<2 lines>...
+        operation_id=operation_id,
+    )
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\topology.py", line 409, in select_server
+    server = self._select_server(
+        selector,
+    ...<4 lines>...
+        operation_id=operation_id,
+    )
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\topology.py", line 387, in _select_server
+    servers = self.select_servers(
+        selector, operation, server_selection_timeout, address, operation_id
+    )
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\topology.py", line 294, in select_servers
+    server_descriptions = self._select_servers_loop(
+        selector, server_timeout, operation, operation_id, address
+    )
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\topology.py", line 344, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+        f"{self._error_message(selector)}, Timeout: {timeout}s, Topology Description: {self.description!r}"
+    )
+pymongo.errors.ServerSelectionTimeoutError: SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 68f3003777df8e217454b223, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-atny5bi-shard-00-00.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-01.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-02.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\networksecurity\components\data_ingestion.py", line 120, in initiate_data_ingestion
+    dataframe = self.export_collection_as_dataframe()
+  File "D:\NetworkSecurity\networksecurity\components\data_ingestion.py", line 74, in export_collection_as_dataframe
+    raise NetworkSecurityException(e, sys)
+networksecurity.exception.exception.NetworkSecurityException: error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_ingestion.py] at line number [59] error message [SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 68f3003777df8e217454b223, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-atny5bi-shard-00-00.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-01.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-02.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>]
+2025-10-18 08:20:02,035 - networksecurity - ERROR - error occurred in python script name [D:\NetworkSecurity\main.py] at line number [13] error message [error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_ingestion.py] at line number [120] error message [error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_ingestion.py] at line number [59] error message [SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 68f3003777df8e217454b223, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-atny5bi-shard-00-00.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-01.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-02.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>]]]
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\networksecurity\components\data_ingestion.py", line 59, in export_collection_as_dataframe
+    records = list(cursor)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\cursor.py", line 1289, in __next__
+    return self.next()
+           ~~~~~~~~~^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\cursor.py", line 1265, in next
+    if len(self._data) or self._refresh():
+                          ~~~~~~~~~~~~~^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\cursor.py", line 1213, in _refresh
+    self._send_message(q)
+    ~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\cursor.py", line 1108, in _send_message
+    response = client._run_operation(
+        operation, self._unpack_response, address=self._address
+    )
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 1938, in _run_operation
+    return self._retryable_read(
+           ~~~~~~~~~~~~~~~~~~~~^
+        _cmd,
+        ^^^^^
+    ...<4 lines>...
+        operation=operation.name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 2047, in _retryable_read
+    return self._retry_internal(
+           ~~~~~~~~~~~~~~~~~~~~^
+        func,
+        ^^^^^
+    ...<7 lines>...
+        operation_id=operation_id,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 2014, in _retry_internal
+    ).run()
+      ~~~^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 2765, in run
+    return self._read() if self._is_read else self._write()
+           ~~~~~~~~~~^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 2910, in _read
+    self._server = self._get_server()
+                   ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 2858, in _get_server
+    return self._client._select_server(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self._server_selector,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        operation_id=self._operation_id,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 1833, in _select_server
+    server = topology.select_server(
+        server_selector,
+    ...<2 lines>...
+        operation_id=operation_id,
+    )
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\topology.py", line 409, in select_server
+    server = self._select_server(
+        selector,
+    ...<4 lines>...
+        operation_id=operation_id,
+    )
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\topology.py", line 387, in _select_server
+    servers = self.select_servers(
+        selector, operation, server_selection_timeout, address, operation_id
+    )
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\topology.py", line 294, in select_servers
+    server_descriptions = self._select_servers_loop(
+        selector, server_timeout, operation, operation_id, address
+    )
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\site-packages\pymongo\synchronous\topology.py", line 344, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+        f"{self._error_message(selector)}, Timeout: {timeout}s, Topology Description: {self.description!r}"
+    )
+pymongo.errors.ServerSelectionTimeoutError: SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 68f3003777df8e217454b223, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-atny5bi-shard-00-00.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-01.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-02.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\networksecurity\components\data_ingestion.py", line 120, in initiate_data_ingestion
+    dataframe = self.export_collection_as_dataframe()
+  File "D:\NetworkSecurity\networksecurity\components\data_ingestion.py", line 74, in export_collection_as_dataframe
+    raise NetworkSecurityException(e, sys)
+networksecurity.exception.exception.NetworkSecurityException: error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_ingestion.py] at line number [59] error message [SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 68f3003777df8e217454b223, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-atny5bi-shard-00-00.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-01.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-02.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\main.py", line 13, in <module>
+    dataingestionartifact = data_ingestion.initiate_data_ingestion()
+  File "D:\NetworkSecurity\networksecurity\components\data_ingestion.py", line 136, in initiate_data_ingestion
+    raise NetworkSecurityException(e, sys)
+networksecurity.exception.exception.NetworkSecurityException: error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_ingestion.py] at line number [120] error message [error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_ingestion.py] at line number [59] error message [SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 68f3003777df8e217454b223, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-atny5bi-shard-00-00.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-01.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-02.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>]]
+2025-10-18 08:21:14,794 - networksecurity - ERROR - Failed to export collection from MongoDB: SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 68f30080987decc77fbd7534, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-atny5bi-shard-00-00.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-01.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-02.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2025-10-18 08:21:14,796 - networksecurity - INFO - Falling back to local CSV at D:\NetworkSecurity\Network_Data\phisingData.csv
+2025-10-18 08:21:14,904 - networksecurity - ERROR - error occurred in python script name [D:\NetworkSecurity\main.py] at line number [17] error message [DataValidation.__init__() missing 1 required positional argument: 'data_validation_config']
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\main.py", line 17, in <module>
+    data_validation_config=DataValidation(TrainingPipelineConfig)
+TypeError: DataValidation.__init__() missing 1 required positional argument: 'data_validation_config'
+2025-10-18 08:23:08,789 - networksecurity - INFO - Starting the data ingestion component
+2025-10-18 08:23:45,055 - networksecurity - ERROR - Failed to export collection from MongoDB: SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 68f3011512dac2d17588601e, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-atny5bi-shard-00-00.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-01.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-02.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2025-10-18 08:23:45,056 - networksecurity - INFO - Falling back to local CSV at D:\NetworkSecurity\Network_Data\phisingData.csv
+2025-10-18 08:23:45,146 - networksecurity - INFO - Data ingestion artifact:ArtifactEntity(trained_file_path='Artifacts\\artifact\\20251018082308\\data_ingestion\\ingested\\train.csv', test_file_path='Artifacts\\artifact\\20251018082308\\data_ingestion\\ingested\\test.csv')
+2025-10-18 08:23:45,146 - networksecurity - ERROR - error occurred in python script name [D:\NetworkSecurity\networksecurity\utils\utils.py] at line number [10] error message [[Errno 2] No such file or directory: 'data_schema\\schema.ymal']
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\networksecurity\utils\utils.py", line 10, in read_yaml_file
+    with open (file_path,"rb") as yaml_file:
+         ~~~~~^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data_schema\\schema.ymal'
+2025-10-18 08:23:45,147 - networksecurity - ERROR - error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_validation.py] at line number [15] error message [error occurred in python script name [D:\NetworkSecurity\networksecurity\utils\utils.py] at line number [10] error message [[Errno 2] No such file or directory: 'data_schema\\schema.ymal']]
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\networksecurity\utils\utils.py", line 10, in read_yaml_file
+    with open (file_path,"rb") as yaml_file:
+         ~~~~~^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data_schema\\schema.ymal'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\networksecurity\components\data_validation.py", line 15, in __init__
+    self._schema_config = read_yaml_file(SCHEMA_FILE_PATH)
+                          ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\NetworkSecurity\networksecurity\utils\utils.py", line 13, in read_yaml_file
+    raise NetworkSecurityException(e,sys) from e
+networksecurity.exception.exception.NetworkSecurityException: error occurred in python script name [D:\NetworkSecurity\networksecurity\utils\utils.py] at line number [10] error message [[Errno 2] No such file or directory: 'data_schema\\schema.ymal']
+2025-10-18 08:23:45,148 - networksecurity - ERROR - error occurred in python script name [D:\NetworkSecurity\main.py] at line number [20] error message [error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_validation.py] at line number [15] error message [error occurred in python script name [D:\NetworkSecurity\networksecurity\utils\utils.py] at line number [10] error message [[Errno 2] No such file or directory: 'data_schema\\schema.ymal']]]
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\networksecurity\utils\utils.py", line 10, in read_yaml_file
+    with open (file_path,"rb") as yaml_file:
+         ~~~~~^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data_schema\\schema.ymal'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\networksecurity\components\data_validation.py", line 15, in __init__
+    self._schema_config = read_yaml_file(SCHEMA_FILE_PATH)
+                          ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\NetworkSecurity\networksecurity\utils\utils.py", line 13, in read_yaml_file
+    raise NetworkSecurityException(e,sys) from e
+networksecurity.exception.exception.NetworkSecurityException: error occurred in python script name [D:\NetworkSecurity\networksecurity\utils\utils.py] at line number [10] error message [[Errno 2] No such file or directory: 'data_schema\\schema.ymal']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\main.py", line 20, in <module>
+    data_validation = DataValidation(dataingestionartifact, data_validation_config)
+  File "D:\NetworkSecurity\networksecurity\components\data_validation.py", line 17, in __init__
+    raise NetworkSecurityException (e,sys)
+networksecurity.exception.exception.NetworkSecurityException: error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_validation.py] at line number [15] error message [error occurred in python script name [D:\NetworkSecurity\networksecurity\utils\utils.py] at line number [10] error message [[Errno 2] No such file or directory: 'data_schema\\schema.ymal']]
+2025-10-18 08:24:10,721 - networksecurity - INFO - Starting the data ingestion component
+2025-10-18 08:24:45,673 - networksecurity - ERROR - Failed to export collection from MongoDB: SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 68f30152360b6e7841ccc63e, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-atny5bi-shard-00-00.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-01.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-02.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2025-10-18 08:24:45,674 - networksecurity - INFO - Falling back to local CSV at D:\NetworkSecurity\Network_Data\phisingData.csv
+2025-10-18 08:24:45,843 - networksecurity - INFO - Data ingestion artifact:ArtifactEntity(trained_file_path='Artifacts\\artifact\\20251018082410\\data_ingestion\\ingested\\train.csv', test_file_path='Artifacts\\artifact\\20251018082410\\data_ingestion\\ingested\\test.csv')
+2025-10-18 08:24:45,852 - networksecurity - INFO - Starting data validation
+2025-10-18 08:24:45,852 - networksecurity - INFO - starting data validation
+2025-10-18 08:24:45,852 - networksecurity - ERROR - error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_validation.py] at line number [39] error message ['ArtifactEntity' object has no attribute 'train_file_path']
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\networksecurity\components\data_validation.py", line 39, in initiate_data_validation
+    train_file_path=self.data_ingestion_artifact.train_file_path
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ArtifactEntity' object has no attribute 'train_file_path'. Did you mean: 'trained_file_path'?
+2025-10-18 08:24:45,853 - networksecurity - ERROR - error occurred in python script name [D:\NetworkSecurity\main.py] at line number [22] error message [error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_validation.py] at line number [39] error message ['ArtifactEntity' object has no attribute 'train_file_path']]
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\networksecurity\components\data_validation.py", line 39, in initiate_data_validation
+    train_file_path=self.data_ingestion_artifact.train_file_path
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ArtifactEntity' object has no attribute 'train_file_path'. Did you mean: 'trained_file_path'?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\main.py", line 22, in <module>
+    data_validation_artifact = data_validation.initiate_data_validation()
+  File "D:\NetworkSecurity\networksecurity\components\data_validation.py", line 68, in initiate_data_validation
+    raise NetworkSecurityException(e,sys) from e
+networksecurity.exception.exception.NetworkSecurityException: error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_validation.py] at line number [39] error message ['ArtifactEntity' object has no attribute 'train_file_path']
+2025-10-18 08:25:08,284 - networksecurity - INFO - Starting the data ingestion component
+2025-10-18 08:25:43,050 - networksecurity - ERROR - Failed to export collection from MongoDB: SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 68f3018c6ee7a7239a2b587e, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-atny5bi-shard-00-00.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-01.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-02.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2025-10-18 08:25:43,051 - networksecurity - INFO - Falling back to local CSV at D:\NetworkSecurity\Network_Data\phisingData.csv
+2025-10-18 08:25:43,212 - networksecurity - INFO - Data ingestion artifact:ArtifactEntity(trained_file_path='Artifacts\\artifact\\20251018082508\\data_ingestion\\ingested\\train.csv', test_file_path='Artifacts\\artifact\\20251018082508\\data_ingestion\\ingested\\test.csv')
+2025-10-18 08:25:43,218 - networksecurity - INFO - Starting data validation
+2025-10-18 08:25:43,219 - networksecurity - INFO - starting data validation
+2025-10-18 08:25:43,241 - networksecurity - INFO - required number of columns :31
+2025-10-18 08:25:43,241 - networksecurity - INFO - dataframe has columns :31
+2025-10-18 08:25:43,241 - networksecurity - INFO - required number of columns :31
+2025-10-18 08:25:43,241 - networksecurity - INFO - dataframe has columns :31
+2025-10-18 08:25:43,241 - networksecurity - ERROR - error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_validation.py] at line number [52] error message [DataValidation.detect_data_drift() got an unexpected keyword argument 'current_df']
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\networksecurity\components\data_validation.py", line 52, in initiate_data_validation
+    status=self.detect_data_drift(base_df=train_dataframe,current_df=test_dataframe)
+TypeError: DataValidation.detect_data_drift() got an unexpected keyword argument 'current_df'
+2025-10-18 08:25:43,242 - networksecurity - ERROR - error occurred in python script name [D:\NetworkSecurity\main.py] at line number [22] error message [error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_validation.py] at line number [52] error message [DataValidation.detect_data_drift() got an unexpected keyword argument 'current_df']]
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\networksecurity\components\data_validation.py", line 52, in initiate_data_validation
+    status=self.detect_data_drift(base_df=train_dataframe,current_df=test_dataframe)
+TypeError: DataValidation.detect_data_drift() got an unexpected keyword argument 'current_df'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\main.py", line 22, in <module>
+    data_validation_artifact = data_validation.initiate_data_validation()
+  File "D:\NetworkSecurity\networksecurity\components\data_validation.py", line 68, in initiate_data_validation
+    raise NetworkSecurityException(e,sys) from e
+networksecurity.exception.exception.NetworkSecurityException: error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_validation.py] at line number [52] error message [DataValidation.detect_data_drift() got an unexpected keyword argument 'current_df']
+2025-10-18 08:26:03,635 - networksecurity - INFO - Starting the data ingestion component
+2025-10-18 08:26:38,464 - networksecurity - ERROR - Failed to export collection from MongoDB: SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 68f301c382f95f4793283f3d, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-atny5bi-shard-00-00.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-01.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-02.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2025-10-18 08:26:38,465 - networksecurity - INFO - Falling back to local CSV at D:\NetworkSecurity\Network_Data\phisingData.csv
+2025-10-18 08:26:38,574 - networksecurity - INFO - Data ingestion artifact:ArtifactEntity(trained_file_path='Artifacts\\artifact\\20251018082603\\data_ingestion\\ingested\\train.csv', test_file_path='Artifacts\\artifact\\20251018082603\\data_ingestion\\ingested\\test.csv')
+2025-10-18 08:26:38,577 - networksecurity - INFO - Starting data validation
+2025-10-18 08:26:38,577 - networksecurity - INFO - starting data validation
+2025-10-18 08:26:38,597 - networksecurity - INFO - required number of columns :31
+2025-10-18 08:26:38,597 - networksecurity - INFO - dataframe has columns :31
+2025-10-18 08:26:38,597 - networksecurity - INFO - required number of columns :31
+2025-10-18 08:26:38,597 - networksecurity - INFO - dataframe has columns :31
+2025-10-18 08:26:38,713 - networksecurity - INFO - Data validation artifact:DataValidationArtifact(validation_status=True, valid_train_file_path='Artifacts\\data_validation\\validated\\train.csv', valid_test_file_path='Artifacts\\data_validation\\validated\\test.csv', invalid_train_file_path=None, invalid_test_file_path=None, drift_report_file_path='Artifacts\\data_validation\\drift_report\\report.yaml')
