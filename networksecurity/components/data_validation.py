@@ -66,7 +66,7 @@ class DataValidation:
             return data_validation_artifact
         except Exception as e:
             raise NetworkSecurityException(e,sys) from e
-    
+          
     def detect_data_drift(self,base_df, current_df=None, threshold=0.05)->bool:
         try:
             status=True

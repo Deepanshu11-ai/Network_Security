@@ -405,3 +405,143 @@ networksecurity.exception.exception.NetworkSecurityException: error occurred in 
 2025-10-18 08:26:38,597 - networksecurity - INFO - required number of columns :31
 2025-10-18 08:26:38,597 - networksecurity - INFO - dataframe has columns :31
 2025-10-18 08:26:38,713 - networksecurity - INFO - Data validation artifact:DataValidationArtifact(validation_status=True, valid_train_file_path='Artifacts\\data_validation\\validated\\train.csv', valid_test_file_path='Artifacts\\data_validation\\validated\\test.csv', invalid_train_file_path=None, invalid_test_file_path=None, drift_report_file_path='Artifacts\\data_validation\\drift_report\\report.yaml')
+2025-11-07 19:39:51,892 - networksecurity - INFO - Starting the data ingestion component
+2025-11-07 19:40:26,675 - networksecurity - ERROR - Failed to export collection from MongoDB: SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 690dfdb04de42d100c75f55f, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-atny5bi-shard-00-00.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-01.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-02.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2025-11-07 19:40:26,676 - networksecurity - INFO - Falling back to local CSV at D:\NetworkSecurity\Network_Data\phisingData.csv
+2025-11-07 19:40:26,785 - networksecurity - INFO - Data ingestion artifact:ArtifactEntity(trained_file_path='Artifacts\\artifact\\20251107193951\\data_ingestion\\ingested\\train.csv', test_file_path='Artifacts\\artifact\\20251107193951\\data_ingestion\\ingested\\test.csv')
+2025-11-07 19:40:26,788 - networksecurity - INFO - Starting data validation
+2025-11-07 19:40:26,788 - networksecurity - INFO - starting data validation
+2025-11-07 19:40:26,805 - networksecurity - INFO - required number of columns :31
+2025-11-07 19:40:26,805 - networksecurity - INFO - dataframe has columns :31
+2025-11-07 19:40:26,805 - networksecurity - INFO - required number of columns :31
+2025-11-07 19:40:26,805 - networksecurity - INFO - dataframe has columns :31
+2025-11-07 19:40:26,886 - networksecurity - INFO - Data validation artifact:DataValidationArtifact(validation_status=True, valid_train_file_path='Artifacts\\data_validation\\validated\\train.csv', valid_test_file_path='Artifacts\\data_validation\\validated\\test.csv', invalid_train_file_path=None, invalid_test_file_path=None, drift_report_file_path='Artifacts\\data_validation\\drift_report\\report.yaml')
+2025-11-07 19:40:26,886 - networksecurity - ERROR - error occurred in python script name [D:\NetworkSecurity\main.py] at line number [25] error message [module 'networksecurity.constant.training_pipeline' has no attribute 'DATA_TRANSFORMATION_TRANSFORMED_DIR']
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\main.py", line 25, in <module>
+    data_transformation_config=DataTransformationConfig(training_pipeline_config)
+  File "D:\NetworkSecurity\networksecurity\entity\config_entity.py", line 68, in __init__
+    self.transformed_train_file_path:str=os.path.join(self.data_transformation_dir,training_pipeline.DATA_TRANSFORMATION_TRANSFORMED_DIR,training_pipeline.TRAIN_FILE_NAME.replace("csv","npy"))
+                                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'networksecurity.constant.training_pipeline' has no attribute 'DATA_TRANSFORMATION_TRANSFORMED_DIR'. Did you mean: 'DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR'?
+2025-11-07 19:41:30,970 - networksecurity - INFO - Starting the data ingestion component
+2025-11-07 19:42:06,006 - networksecurity - ERROR - Failed to export collection from MongoDB: SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 690dfe134bbab1ec40afb784, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-atny5bi-shard-00-00.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-01.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-02.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2025-11-07 19:42:06,008 - networksecurity - INFO - Falling back to local CSV at D:\NetworkSecurity\Network_Data\phisingData.csv
+2025-11-07 19:42:06,113 - networksecurity - INFO - Data ingestion artifact:ArtifactEntity(trained_file_path='Artifacts\\artifact\\20251107194130\\data_ingestion\\ingested\\train.csv', test_file_path='Artifacts\\artifact\\20251107194130\\data_ingestion\\ingested\\test.csv')
+2025-11-07 19:42:06,116 - networksecurity - INFO - Starting data validation
+2025-11-07 19:42:06,116 - networksecurity - INFO - starting data validation
+2025-11-07 19:42:06,132 - networksecurity - INFO - required number of columns :31
+2025-11-07 19:42:06,132 - networksecurity - INFO - dataframe has columns :31
+2025-11-07 19:42:06,132 - networksecurity - INFO - required number of columns :31
+2025-11-07 19:42:06,132 - networksecurity - INFO - dataframe has columns :31
+2025-11-07 19:42:06,211 - networksecurity - INFO - Data validation artifact:DataValidationArtifact(validation_status=True, valid_train_file_path='Artifacts\\data_validation\\validated\\train.csv', valid_test_file_path='Artifacts\\data_validation\\validated\\test.csv', invalid_train_file_path=None, invalid_test_file_path=None, drift_report_file_path='Artifacts\\data_validation\\drift_report\\report.yaml')
+2025-11-07 19:42:06,212 - networksecurity - ERROR - error occurred in python script name [D:\NetworkSecurity\main.py] at line number [25] error message [module 'networksecurity.constant.training_pipeline' has no attribute 'DATA_TRANSFORMATION_OBJECT_DIR']
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\main.py", line 25, in <module>
+    data_transformation_config=DataTransformationConfig(training_pipeline_config)
+  File "D:\NetworkSecurity\networksecurity\entity\config_entity.py", line 70, in __init__
+    self.data_transformation_dir_path:str=os.path.join(self.data_transformation_dir,training_pipeline.DATA_TRANSFORMATION_OBJECT_DIR,training_pipeline.PREPROCESSING_OBJECT_FILE_NAME)
+                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'networksecurity.constant.training_pipeline' has no attribute 'DATA_TRANSFORMATION_OBJECT_DIR'. Did you mean: 'DATA_TRANSFORMATION_DIR_NAME'?
+2025-11-07 19:43:01,523 - networksecurity - INFO - Starting the data ingestion component
+2025-11-07 19:43:36,557 - networksecurity - ERROR - Failed to export collection from MongoDB: SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 690dfe6d7e2018a05ab8686e, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-atny5bi-shard-00-00.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-01.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-02.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2025-11-07 19:43:36,559 - networksecurity - INFO - Falling back to local CSV at D:\NetworkSecurity\Network_Data\phisingData.csv
+2025-11-07 19:43:36,664 - networksecurity - INFO - Data ingestion artifact:ArtifactEntity(trained_file_path='Artifacts\\artifact\\20251107194301\\data_ingestion\\ingested\\train.csv', test_file_path='Artifacts\\artifact\\20251107194301\\data_ingestion\\ingested\\test.csv')
+2025-11-07 19:43:36,667 - networksecurity - INFO - Starting data validation
+2025-11-07 19:43:36,667 - networksecurity - INFO - starting data validation
+2025-11-07 19:43:36,680 - networksecurity - INFO - required number of columns :31
+2025-11-07 19:43:36,680 - networksecurity - INFO - dataframe has columns :31
+2025-11-07 19:43:36,680 - networksecurity - INFO - required number of columns :31
+2025-11-07 19:43:36,680 - networksecurity - INFO - dataframe has columns :31
+2025-11-07 19:43:36,763 - networksecurity - INFO - Data validation artifact:DataValidationArtifact(validation_status=True, valid_train_file_path='Artifacts\\data_validation\\validated\\train.csv', valid_test_file_path='Artifacts\\data_validation\\validated\\test.csv', invalid_train_file_path=None, invalid_test_file_path=None, drift_report_file_path='Artifacts\\data_validation\\drift_report\\report.yaml')
+2025-11-07 19:43:36,776 - networksecurity - ERROR - error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_transformation.py] at line number [52] error message [KNNImputer.__init__() got an unexpected keyword argument 'n_neighbours'. Did you mean 'n_neighbors'?]
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\networksecurity\components\data_transformation.py", line 52, in get_data_transformer_object
+    imputer:KNNImputer=KNNImputer(**DATA_TRANSFORMATION_IMPUTER_PARAMS)
+                       ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: KNNImputer.__init__() got an unexpected keyword argument 'n_neighbours'. Did you mean 'n_neighbors'?
+2025-11-07 19:43:36,777 - networksecurity - ERROR - error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_transformation.py] at line number [79] error message [error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_transformation.py] at line number [52] error message [KNNImputer.__init__() got an unexpected keyword argument 'n_neighbours'. Did you mean 'n_neighbors'?]]
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\networksecurity\components\data_transformation.py", line 52, in get_data_transformer_object
+    imputer:KNNImputer=KNNImputer(**DATA_TRANSFORMATION_IMPUTER_PARAMS)
+                       ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: KNNImputer.__init__() got an unexpected keyword argument 'n_neighbours'. Did you mean 'n_neighbors'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\networksecurity\components\data_transformation.py", line 79, in initiate_data_transformation
+    preprocessor=self.get_data_transformer_object()
+  File "D:\NetworkSecurity\networksecurity\components\data_transformation.py", line 59, in get_data_transformer_object
+    raise NetworkSecurityException(e,sys)
+networksecurity.exception.exception.NetworkSecurityException: error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_transformation.py] at line number [52] error message [KNNImputer.__init__() got an unexpected keyword argument 'n_neighbours'. Did you mean 'n_neighbors'?]
+2025-11-07 19:43:36,777 - networksecurity - ERROR - error occurred in python script name [D:\NetworkSecurity\main.py] at line number [27] error message [error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_transformation.py] at line number [79] error message [error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_transformation.py] at line number [52] error message [KNNImputer.__init__() got an unexpected keyword argument 'n_neighbours'. Did you mean 'n_neighbors'?]]]
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\networksecurity\components\data_transformation.py", line 52, in get_data_transformer_object
+    imputer:KNNImputer=KNNImputer(**DATA_TRANSFORMATION_IMPUTER_PARAMS)
+                       ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: KNNImputer.__init__() got an unexpected keyword argument 'n_neighbours'. Did you mean 'n_neighbors'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\networksecurity\components\data_transformation.py", line 79, in initiate_data_transformation
+    preprocessor=self.get_data_transformer_object()
+  File "D:\NetworkSecurity\networksecurity\components\data_transformation.py", line 59, in get_data_transformer_object
+    raise NetworkSecurityException(e,sys)
+networksecurity.exception.exception.NetworkSecurityException: error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_transformation.py] at line number [52] error message [KNNImputer.__init__() got an unexpected keyword argument 'n_neighbours'. Did you mean 'n_neighbors'?]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\main.py", line 27, in <module>
+    data_transformation_artifact=data_transforamtion.initiate_data_transformation()
+  File "D:\NetworkSecurity\networksecurity\components\data_transformation.py", line 109, in initiate_data_transformation
+    raise NetworkSecurityException(e,sys)
+networksecurity.exception.exception.NetworkSecurityException: error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_transformation.py] at line number [79] error message [error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_transformation.py] at line number [52] error message [KNNImputer.__init__() got an unexpected keyword argument 'n_neighbours'. Did you mean 'n_neighbors'?]]
+2025-11-07 19:44:46,422 - networksecurity - INFO - Starting the data ingestion component
+2025-11-07 19:45:21,352 - networksecurity - ERROR - Failed to export collection from MongoDB: SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 690dfed6bc800d4b7436a549, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-atny5bi-shard-00-00.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-01.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-02.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2025-11-07 19:45:21,354 - networksecurity - INFO - Falling back to local CSV at D:\NetworkSecurity\Network_Data\phisingData.csv
+2025-11-07 19:45:21,467 - networksecurity - INFO - Data ingestion artifact:ArtifactEntity(trained_file_path='Artifacts\\artifact\\20251107194446\\data_ingestion\\ingested\\train.csv', test_file_path='Artifacts\\artifact\\20251107194446\\data_ingestion\\ingested\\test.csv')
+2025-11-07 19:45:21,469 - networksecurity - INFO - Starting data validation
+2025-11-07 19:45:21,470 - networksecurity - INFO - starting data validation
+2025-11-07 19:45:21,489 - networksecurity - INFO - required number of columns :31
+2025-11-07 19:45:21,489 - networksecurity - INFO - dataframe has columns :31
+2025-11-07 19:45:21,489 - networksecurity - INFO - required number of columns :31
+2025-11-07 19:45:21,489 - networksecurity - INFO - dataframe has columns :31
+2025-11-07 19:45:21,589 - networksecurity - INFO - Data validation artifact:DataValidationArtifact(validation_status=True, valid_train_file_path='Artifacts\\data_validation\\validated\\train.csv', valid_test_file_path='Artifacts\\data_validation\\validated\\test.csv', invalid_train_file_path=None, invalid_test_file_path=None, drift_report_file_path='Artifacts\\data_validation\\drift_report\\report.yaml')
+2025-11-07 19:45:21,610 - networksecurity - ERROR - error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_transformation.py] at line number [92] error message ['DataTransformationConfig' object has no attribute 'transformed_object_file_path']
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\networksecurity\components\data_transformation.py", line 92, in initiate_data_transformation
+    save_object( self.data_transformation_config.transformed_object_file_path, preprocessor_object,)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'DataTransformationConfig' object has no attribute 'transformed_object_file_path'. Did you mean: 'transformed_test_file_path'?
+2025-11-07 19:45:21,611 - networksecurity - ERROR - error occurred in python script name [D:\NetworkSecurity\main.py] at line number [27] error message [error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_transformation.py] at line number [92] error message ['DataTransformationConfig' object has no attribute 'transformed_object_file_path']]
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\networksecurity\components\data_transformation.py", line 92, in initiate_data_transformation
+    save_object( self.data_transformation_config.transformed_object_file_path, preprocessor_object,)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'DataTransformationConfig' object has no attribute 'transformed_object_file_path'. Did you mean: 'transformed_test_file_path'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\main.py", line 27, in <module>
+    data_transformation_artifact=data_transforamtion.initiate_data_transformation()
+  File "D:\NetworkSecurity\networksecurity\components\data_transformation.py", line 109, in initiate_data_transformation
+    raise NetworkSecurityException(e,sys)
+networksecurity.exception.exception.NetworkSecurityException: error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_transformation.py] at line number [92] error message ['DataTransformationConfig' object has no attribute 'transformed_object_file_path']
+2025-11-07 19:48:24,420 - networksecurity - INFO - Starting the data ingestion component
+2025-11-07 19:48:59,186 - networksecurity - ERROR - Failed to export collection from MongoDB: SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 690dffb0ebbb98f7f2107d4f, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-atny5bi-shard-00-00.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-01.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-02.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2025-11-07 19:48:59,187 - networksecurity - INFO - Falling back to local CSV at D:\NetworkSecurity\Network_Data\phisingData.csv
+2025-11-07 19:48:59,314 - networksecurity - INFO - Data ingestion artifact:ArtifactEntity(trained_file_path='Artifacts\\artifact\\20251107194824\\data_ingestion\\ingested\\train.csv', test_file_path='Artifacts\\artifact\\20251107194824\\data_ingestion\\ingested\\test.csv')
+2025-11-07 19:48:59,318 - networksecurity - INFO - Starting data validation
+2025-11-07 19:48:59,318 - networksecurity - INFO - starting data validation
+2025-11-07 19:48:59,334 - networksecurity - INFO - required number of columns :31
+2025-11-07 19:48:59,334 - networksecurity - INFO - dataframe has columns :31
+2025-11-07 19:48:59,334 - networksecurity - INFO - required number of columns :31
+2025-11-07 19:48:59,334 - networksecurity - INFO - dataframe has columns :31
+2025-11-07 19:48:59,417 - networksecurity - INFO - Data validation artifact:DataValidationArtifact(validation_status=True, valid_train_file_path='Artifacts\\data_validation\\validated\\train.csv', valid_test_file_path='Artifacts\\data_validation\\validated\\test.csv', invalid_train_file_path=None, invalid_test_file_path=None, drift_report_file_path='Artifacts\\data_validation\\drift_report\\report.yaml')
+2025-11-07 19:48:59,439 - networksecurity - INFO - Saving object file at : Artifacts\artifact\20251107194824\data_transformation\transformed-object\preprocessor.pkl
+2025-11-07 19:48:59,442 - networksecurity - INFO - Saving object file at : final_model/preprocessor.pkl
+2025-11-07 19:48:59,444 - networksecurity - INFO - Data Transformation artifact:DataTransformationArtifact(transformed_train_file_path='Artifacts\\artifact\\20251107194824\\data_transformation\\transformed\\train.npy', transformed_test_file_path='Artifacts\\artifact\\20251107194824\\data_transformation\\transformed\\test.npy', preprocessor_object_path='Artifacts\\artifact\\20251107194824\\data_transformation\\transformed-object\\preprocessor.pkl')

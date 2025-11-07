@@ -1,0 +1,38 @@
+[2025-11-07 19:44:46,422] 11 networksecurity - INFO - Starting the data ingestion component
+[2025-11-07 19:45:21,352] 73 networksecurity - ERROR - Failed to export collection from MongoDB: SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms),SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 690dfed6bc800d4b7436a549, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-atny5bi-shard-00-00.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-00.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-01.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-01.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('ac-atny5bi-shard-00-02.opcjqim.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('SSL handshake failed: ac-atny5bi-shard-00-02.opcjqim.mongodb.net:27017: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1032) (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+[2025-11-07 19:45:21,354] 78 networksecurity - INFO - Falling back to local CSV at D:\NetworkSecurity\Network_Data\phisingData.csv
+[2025-11-07 19:45:21,436] 114 root - INFO - Performed train test split
+[2025-11-07 19:45:21,437] 120 root - INFO - Exporting train and test file path
+[2025-11-07 19:45:21,467] 16 networksecurity - INFO - Data ingestion artifact:ArtifactEntity(trained_file_path='Artifacts\\artifact\\20251107194446\\data_ingestion\\ingested\\train.csv', test_file_path='Artifacts\\artifact\\20251107194446\\data_ingestion\\ingested\\test.csv')
+[2025-11-07 19:45:21,469] 22 networksecurity - INFO - Starting data validation
+[2025-11-07 19:45:21,470] 38 networksecurity - INFO - starting data validation
+[2025-11-07 19:45:21,489] 27 networksecurity - INFO - required number of columns :31
+[2025-11-07 19:45:21,489] 28 networksecurity - INFO - dataframe has columns :31
+[2025-11-07 19:45:21,489] 27 networksecurity - INFO - required number of columns :31
+[2025-11-07 19:45:21,489] 28 networksecurity - INFO - dataframe has columns :31
+[2025-11-07 19:45:21,589] 24 networksecurity - INFO - Data validation artifact:DataValidationArtifact(validation_status=True, valid_train_file_path='Artifacts\\data_validation\\validated\\train.csv', valid_test_file_path='Artifacts\\data_validation\\validated\\test.csv', invalid_train_file_path=None, invalid_test_file_path=None, drift_report_file_path='Artifacts\\data_validation\\drift_report\\report.yaml')
+[2025-11-07 19:45:21,590] 63 root - INFO - Entered initiate_data_transformation method of DataTransformation class
+[2025-11-07 19:45:21,590] 65 root - INFO - Starting data transformation
+[2025-11-07 19:45:21,603] 48 root - INFO - Entered get_data_trnasformer_object method of Trnasformation class
+[2025-11-07 19:45:21,603] 53 root - INFO - Initialise KNNImputer with {'missing_values': nan, 'n_neighbors': 3, 'weights': 'uniform'}
+[2025-11-07 19:45:21,610] 36 networksecurity - ERROR - error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_transformation.py] at line number [92] error message ['DataTransformationConfig' object has no attribute 'transformed_object_file_path']
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\networksecurity\components\data_transformation.py", line 92, in initiate_data_transformation
+    save_object( self.data_transformation_config.transformed_object_file_path, preprocessor_object,)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'DataTransformationConfig' object has no attribute 'transformed_object_file_path'. Did you mean: 'transformed_test_file_path'?
+[2025-11-07 19:45:21,611] 36 networksecurity - ERROR - error occurred in python script name [D:\NetworkSecurity\main.py] at line number [27] error message [error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_transformation.py] at line number [92] error message ['DataTransformationConfig' object has no attribute 'transformed_object_file_path']]
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\networksecurity\components\data_transformation.py", line 92, in initiate_data_transformation
+    save_object( self.data_transformation_config.transformed_object_file_path, preprocessor_object,)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'DataTransformationConfig' object has no attribute 'transformed_object_file_path'. Did you mean: 'transformed_test_file_path'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\NetworkSecurity\main.py", line 27, in <module>
+    data_transformation_artifact=data_transforamtion.initiate_data_transformation()
+  File "D:\NetworkSecurity\networksecurity\components\data_transformation.py", line 109, in initiate_data_transformation
+    raise NetworkSecurityException(e,sys)
+networksecurity.exception.exception.NetworkSecurityException: error occurred in python script name [D:\NetworkSecurity\networksecurity\components\data_transformation.py] at line number [92] error message ['DataTransformationConfig' object has no attribute 'transformed_object_file_path']
