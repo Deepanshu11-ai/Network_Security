@@ -41,3 +41,12 @@ def save_object(file_path:str,obj:object)->None:
             pickle.dump(obj,file_obj)
     except Exception as e:
         raise NetworkSecurityException(e,sys) from e
+    
+def load_object(file_path:str)->object:
+    try:
+        logger.info(f"Loading object file from : {file_path}")
+        with open (file_path,"rb") as file_obj:
+            print("File opened successfully")
+            return pickle.load(file_obj)
+    except Exception as e:
+        raise NetworkSecurityException(e,sys) from e 
